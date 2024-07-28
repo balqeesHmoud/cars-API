@@ -1,6 +1,6 @@
 from rest_framework import generics 
 from .models import Car 
-from serializer import CarSerializer
+from serializers import CarSerializer
 
 # ListCreateAPIView for listing and creating cars
 class CarListCreateView(generics.ListCreateAPIView):
