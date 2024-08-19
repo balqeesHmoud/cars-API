@@ -1,13 +1,15 @@
-from rest_framework import generics 
-from .models import Car 
-from serializers import CarSerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Car
+from .serializers import CarSerializer
+from .permissions import IsOwnerOrReadOnly
 
-# ListCreateAPIView for listing and creating cars
 class CarListCreateView(generics.ListCreateAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-# RetrieveUpdateDestroyAPIView for retrieving, updating, and deleting cars
 class CarDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    permission_classes = [IsOwnerOrReadOnly]
